@@ -12,6 +12,7 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
+// Why do objects in arrays only display one time when you loop through the array with a for loop?
 const quotes = [
   { quote: `"Words aren't the only way to tell someone how you feel."`, source: `- Tifa Lockhart` },
   { quote: `"So what if it seems hopeless? If it were me. I still wouldn't give up. Embrace your dreams"`, source: `- Zack Fair` },
@@ -27,8 +28,28 @@ console.log(quotes);
 /***
  * `getRandomQuote` function
 ***/
+function getRandomQuote(arr) {
+  // 1. Create a variable that generates a random number
+  // between zero and the last index in the `quotes` array
+  const randomNumber = Math.floor( Math.random() * quotes.length ) + 0;
 
+  // 2. Use the random number variable and bracket notation 
+  // to grab a random object from the `quotes` array, and 
+  // store it in a variable
+  let randomIndex;
+  
+  for ( let i = 0; i < arr.length; i++ ) {
+    randomIndex = arr[randomNumber]; // variable is set, overwritten the same value.
+    // return all quotes
+    // randomIndex += arr[i];
+  }
 
+  // 3. Return the variable storing the random quote object
+  return randomIndex;
+}
+
+const randomQuote = getRandomQuote(quotes); 
+console.log(randomQuote);
 
 /***
  * `printQuote` function
