@@ -22,7 +22,7 @@ const quotes = [
 ];
 
 // test to see if I can print the quotes variable.
-console.log(quotes);
+// console.log(quotes);
 
 
 /***
@@ -45,11 +45,13 @@ function getRandomQuote(arr) {
   }
 
   // 3. Return the variable storing the random quote object
-  return randomIndex;
+  console.log(randomNumber); // logs index number.
+  console.log(randomIndex); //  logs the object.
+  return randomIndex; 
 }
 
 const randomQuote = getRandomQuote(quotes); 
-console.log(randomQuote);
+
 
 /***
  * `printQuote` function
