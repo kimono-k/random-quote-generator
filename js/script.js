@@ -12,13 +12,14 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
-// Why do objects in arrays only display one time when you loop through the array with a for loop?
+
+// Objects inside the quotes array.
 const quotes = [
-  { quote: `"Words aren't the only way to tell someone how you feel."`, source: `- Tifa Lockhart` },
-  { quote: `"So what if it seems hopeless? If it were me. I still wouldn't give up. Embrace your dreams"`, source: `- Zack Fair` },
-  { quote: `"I have a dream."`, source: `- Martin Luther King Jr.` },
-  { quote: `"Life is not a problem to be solved, but a reality to be experienced."`, source: `- Soren Kierkegaard` },
-  { quote: `"It's not a question of can or can't. There are some things in life you just do."`, source: `- Lightning Farron` }
+  { quote: `Words aren't the only way to tell someone how you feel.`, source: `Tifa Lockhart` },
+  { quote: `So what if it seems hopeless? If it were me. I still wouldn't give up. Embrace your dreams`, source: `Zack Fair` },
+  { quote: `I have a dream.`, source: `Martin Luther King Jr.` },
+  { quote: `Life is not a problem to be solved, but a reality to be experienced.`, source: `Soren Kierkegaard` },
+  { quote: `It's not a question of can or can't. There are some things in life you just do.`, source: `Lightning Farron` }
 ];
 
 // test to see if I can print the quotes variable.
@@ -28,36 +29,64 @@ const quotes = [
 /***
  * `getRandomQuote` function
 ***/
-function getRandomQuote(arr) {
-  // 1. Create a variable that generates a random number
-  // between zero and the last index in the `quotes` array
+function getRandomQuote() {
+  // Gets random number between 0 and quotes.length which is 4.
   const randomNumber = Math.floor( Math.random() * quotes.length ) + 0;
 
-  // 2. Use the random number variable and bracket notation 
-  // to grab a random object from the `quotes` array, and 
-  // store it in a variable
+  // empty variable to use in the for loop.
   let randomIndex;
   
-  for ( let i = 0; i < arr.length; i++ ) {
-    randomIndex = arr[randomNumber]; // variable is set, overwritten the same value.
-    // return all quotes
-    // randomIndex += arr[i];
+  // Gets all the objects in the array.
+  for ( let i = 0; i < quotes.length; i++ ) { 
+    // Random array index gets declarated in the randomIndex variable.
+    randomIndex = quotes[randomNumber]; 
+    // note to myself: variable is set, overwritten the same value.
   }
-
-  // 3. Return the variable storing the random quote object
-  console.log(randomNumber); // logs index number.
-  console.log(randomIndex); //  logs the object.
+  // returns random index element.
   return randomIndex; 
 }
-
-const randomQuote = getRandomQuote(quotes); 
-
 
 /***
  * `printQuote` function
 ***/
 
+function printQuote() {
+  // Function call to the getRandomQuote function.
+  let getTheRandomQuoteFunction = getRandomQuote();
 
+  // Stores the objects from the getRandomQuote function into the html tags.
+  let html = `
+    <p class="quote">${getTheRandomQuoteFunction.quote}</p>
+    <p class="source">${getTheRandomQuoteFunction.source}
+  `;
+
+  // Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
+  // If the citation property is inside the quotes array then put span tags and the citation property into the span tags.
+  // In this case there is no citation property so the HTML string won't get assigned.
+  if ( "citation" in getTheRandomQuoteFunction ) {
+    html += `<span class="citation">${getTheRandomQuoteFunction.citation}</span>`;
+  }
+
+  // If the year property is inside the quotes array then put span tags and the year property into the span tags.
+  // In this case there is no year property so the HTML string won't get assigned.
+  if ( "year" in getTheRandomQuoteFunction ) {
+    html += `<span class="year">${getTheRandomQuoteFunction.year}</span>`;
+  }
+
+  // closing the second <p> tag.
+  html += `
+    </p>
+  `;
+
+  // Selects the id quote-box in the HTML file and stores the html strings with its child tags e.g. <span> in the div id.
+  document.getElementById('quote-box').innerHTML = html;
+
+  // prints a random quote the console.
+  console.log(getTheRandomQuoteFunction); 
+}
+
+// call the printQuote function so that the default quote won't display.
+printQuote();
 
 /***
  * click event listener for the print quote button
