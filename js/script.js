@@ -15,9 +15,9 @@ project 1 - A Random Quote Generator
 
 // Objects inside the quotes array.
 const quotes = [
-  { quote: `Words aren't the only way to tell someone how you feel.`, source: `Tifa Lockhart` },
+  { quote: `Words aren't the only way to tell someone how you feel.`, source: `Tifa Lockhart`},
   { quote: `So what if it seems hopeless? If it were me. I still wouldn't give up. Embrace your dreams`, source: `Zack Fair` },
-  { quote: `I have a dream.`, source: `Martin Luther King Jr.` },
+  { quote: `I have a dream.`, source: `Martin Luther King Jr.`, citation: `American Rhethoric`, year: `1963` },
   { quote: `Life is not a problem to be solved, but a reality to be experienced.`, source: `Soren Kierkegaard` },
   { quote: `It's not a question of can or can't. There are some things in life you just do.`, source: `Lightning Farron` }
 ];
@@ -54,7 +54,7 @@ function printQuote() {
   // Function call to the getRandomQuote function.
   let getTheRandomQuoteFunction = getRandomQuote();
 
-  // Stores the objects from the getRandomQuote function into the html tags.
+  // Stores the random object from the getRandomQuote function into the html tags.
   let html = `
     <p class="quote">${getTheRandomQuoteFunction.quote}</p>
     <p class="source">${getTheRandomQuoteFunction.source}
@@ -62,13 +62,11 @@ function printQuote() {
 
   // Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
   // If the citation property is inside the quotes array then put span tags and the citation property into the span tags.
-  // In this case there is no citation property so the HTML string won't get assigned.
   if ( "citation" in getTheRandomQuoteFunction ) {
     html += `<span class="citation">${getTheRandomQuoteFunction.citation}</span>`;
   }
 
   // If the year property is inside the quotes array then put span tags and the year property into the span tags.
-  // In this case there is no year property so the HTML string won't get assigned.
   if ( "year" in getTheRandomQuoteFunction ) {
     html += `<span class="year">${getTheRandomQuoteFunction.year}</span>`;
   }
@@ -78,7 +76,7 @@ function printQuote() {
     </p>
   `;
 
-  // Selects the id quote-box in the HTML file and stores the html strings with its child tags e.g. <span> in the div id.
+  // Selects the id quote-box in the HTML file and stores the html strings with its modified child tags e.g. <span> in the div id.
   document.getElementById('quote-box').innerHTML = html;
 
   // prints a random quote the console.
