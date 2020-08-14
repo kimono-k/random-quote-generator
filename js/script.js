@@ -40,7 +40,7 @@ function getRandomQuote() {
   for ( let i = 0; i < quotes.length; i++ ) { 
     // Random array index gets declarated in the randomIndex variable.
     randomIndex = quotes[randomNumber]; 
-    // note to myself: variable is set, overwritten the same value.
+    // note to myself: variable is set, overwrites the same value.
   }
   // returns random index element.
   return randomIndex; 
